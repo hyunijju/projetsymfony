@@ -1,0 +1,47 @@
+{% extends "back-office.html.twig" %}
+
+{% block title %}Liste des membres existants{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des membres existants</h1>
+    <br>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>id membre</th>
+                <th>pseudo</th>
+                <th>nom</th>
+                <th>prenom</th>
+                <th>email</th>
+                <th>civilite</th>
+                <th>statut</th>
+                <th>date d'enregistrement</th>
+                <th>actions</th>
+                
+            </tr>
+            
+        </thead>
+        <tbody>
+            {%  for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.pseudo}}</td>
+                    <td>{{user.nom}}</td>
+                    <td>{{user.prenom}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.civilite}}</td>
+                    <td>{{user.roles | join(",")}}</td>
+                    <td>{{user.dateEnregistrement | date("d/m/Y H:i:s")}}</td>
+                    <td>
+                        {% include "commun/actions.html.twig" with {"id" : user.id , "update": "membre_update" , "delete" : "membre_suppr"} %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colSpan="7">Aucun membre n'a été enregistré</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

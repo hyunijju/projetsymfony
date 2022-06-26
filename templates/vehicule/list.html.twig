@@ -1,0 +1,45 @@
+{% extends "back-office.html.twig" %}
+
+{% block title %}Liste des véhicules{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des véhicules disponibles</h1>
+    <br>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th style="width:5%">id</th>
+                <th style="width:10%">titre</th>
+                <th style="width:10%">marque</th>
+                <th style="width:10%">modèle</th>
+                <th style="width:10%">description</th>
+                <th style="width:20%">photo</th>
+                <th style="width:5%">prix</th>
+                <th style="width:30%">actions</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            {%  for vehicule in vehicules %}
+                <tr>
+                    <td>{{vehicule.id}}</td>
+                    <td>{{vehicule.titre}}</td>
+                    <td>{{vehicule.marque}}</td>
+                    <td>{{vehicule.modele}}</td>
+                    <td>{{vehicule.description}}</td>
+                    <td><img src="/upload{{ asset(vehicule.photo)}}" alt="" class="img-fluid"></td>
+                    <td class="text-end">{{vehicule.prixJournalier | deviseFr}}</td>
+                    <td>
+                        {% include "commun/actions.html.twig" with {"id" : vehicule.id , "update": "vehicule_update" , "delete" : "vehicule_suppr"} %}
+                    </td>
+                        
+                </tr>
+            {% else %}
+                <tr>
+                    <td colSpan="7">Aucun véhicule n'a été enregistré</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

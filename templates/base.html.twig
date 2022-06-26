@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {% include "bootswatch.html.twig"%}
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    </head>
+    <body>
+    <div class="img-fluid" >
+        <nav class="navbar navbar-expand bg-light py-2">
+  <div class="container-fluid">
+    <a href=" {{ path ('home_index') }}"class="navbar-brand" href="#">AgenceLoc</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav d-flex">
+      {% if app.user is null %}
+      <li class="nav-item">
+          <a class="nav-link" href="{{ path("app_login")}}">Connexion</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path("app_logout")}}">Déconnexion</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+        <img 
+        src="https://images.unsplash.com/photo-1471479917193-f00955256257?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2831&q=80" class="img-fluid" alt="#">
+    </div>
+    {% block body %}{% endblock %}
+    </body>
+        <section class="">
+  <footer class="text-center text-white" style="background-color: black">
+    <div class="container p-4 pb-0">
+      <section class="">
+        <p class="d-flex justify-content-center align-items-center">
+          <a class="btn btn-outline-light btn-rounded" href=" {{ path ('vehicule_list')}}">
+            Accéder au back office
+          </a>
+        </p>
+      </section>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-white" href="#">AgenceLoc</a>
+    </div>
+  </footer>
+</section>
+</html>

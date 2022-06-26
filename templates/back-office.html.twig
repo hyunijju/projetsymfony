@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+       {% include "bootswatch.html.twig"%}
+        <nav class="navbar bg-dark">
+        <div class="container-fluid">
+          <a href="" class="btn btn-dark">AGENCELOC  <span><small>Back Office</small></span></a>
+          <form class="d-flex">
+            <a class="btn btn-sm btn-outline-light" href="{{ path("app_logout")}}">Déconnexion</a>
+            
+          </form>
+        </div>
+        </nav>
+    </head>
+    <body>
+    <br>
+        <div class="container">
+            <section class="row" >
+                <nav class="col-2">
+                    <h2 class="fs-5 my-3">Gestion des véhicules</h2>
+                    <div class="list-group">
+                        <a href="{{ path("vehicule_new") }}" class="list-group-item list-group-item-action">Ajouter un véhicule</a>
+                        <a href="{{ path("vehicule_list") }}" class="list-group-item list-group-item-action">Voir la liste des véhicules</a>
+                    </div>
+                    <br>
+                    <h2 class="fs-5 my-3">Gestion des membres</h2>
+                    <div class="list-group">
+                        <a href="{{ path("membre_new") }}" class="list-group-item list-group-item-action">Ajouter un membre</a>
+                        <a href="{{ path("membre_list") }}" class="list-group-item list-group-item-action">Voir la liste des membres</a>
+                    </div>
+                    <br>
+                    <h2 class="fs-5 my-3">Gestion des commandes</h2>
+                    <div class="list-group">
+                        <a href="{{ path ("commande_new") }}" class="list-group-item list-group-item-action">Ajouter une commande</a>
+                        <a href="{{ path ("commande_list") }}" class="list-group-item list-group-item-action">Voir la liste des commandes</a>
+                    </div>
+                </nav>
+                <div class="col-10">
+                    {% block body %}{% endblock %}
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

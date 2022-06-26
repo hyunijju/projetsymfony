@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Synthèse{% endblock %}
+
+{% block body %}
+
+<h2>Finaliser votre location</h2>
+  </h1>
+    {% for message in app.flashes("message") %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+    {% for vehicules in app.flashes("vehicules") %}
+        <div class="alert alert-info">
+            <div>Liste des véhicules disponibles sur la période demandée :</div>
+            <ul>
+                {% for v in vehicules.disponibles %}
+                    <li>{{ v.titre }}</li>
+                     {% else %}
+                    <li>Aucun véhicule n'est disponible sur la période demandée</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+
+{{form(form)}}
+
+{% endblock %}

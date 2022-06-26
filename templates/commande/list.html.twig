@@ -1,0 +1,46 @@
+{% extends "back-office.html.twig" %}
+
+{% block title %}Liste des commandes crées{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des commandes crées</h1>
+    <br>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>commande</th>
+                <th>membre</th>
+                <th>véhicule</th>
+                <th>départ</th>
+                <th>fin</th>
+                <th>prix total</th>
+                {#<th>date et heure d'enregistrement</th>#}
+                <th>actions</th>
+                
+            </tr>
+            
+        </thead>
+        <tbody>
+            {%  for commande in commandes %}
+                <tr>
+                    <td>{{commande.id}}</td>
+                    <td>{{commande.user.id}} - {{commande.user.prenom}} {{commande.user.nom}} - {{commande.user.email}}</td>
+                    <td>{{commande.vehicule.id}} - {{commande.vehicule.titre}}</td>
+                    <td>{{commande.dateHeureDepart | date("d/m/Y H:i:s")}}</td>
+                    <td>{{commande.dateHeureFin | date("d/m/Y H:i:s")}}</td>
+                    <td>{{commande.prixTotal | deviseFr}}</td>
+                    {#<td>{{commande.dateEnregistrement | date("d/m/Y H:i:s")}}</td>#}
+                    <td>
+                        {% include "commun/actions.html.twig" with {"id" : commande.id , "update": "commande_update" , "delete" : "commande_suppr"} %}
+                    </td>
+            
+                </tr>
+            {% else %}
+                <tr>
+                    <td colSpan="7">Aucune commande n'a été créée</td>
+                </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+{% endblock %}
